@@ -2,11 +2,9 @@ import tkinter
 import math
 # pyright: reportMissingImports=false
 from services.quotes_Feynman import quotes
-from services.timer import start_timer
 
 
 YELLOW = "#f7f5dd"
-GREEN = "#9bdeac"
 reps = 0
 PINK = "#e2979c"
 RED = "#e7305b"
@@ -26,19 +24,19 @@ def start_timer():
     reps += 1
     if reps % 8 == 0:
         count_down(LONG_BREAK_MIN * 60)
-        title_label.config(text="Long Break", fg=RED)
+        title_label.config(text="Long Break", fg="white")
         window.attributes('-topmost', 1)
         window.bell()
 
     elif reps % 2 == 1:
-        count_down(WORK_MIN)
-        title_label.config(text="Only through hard work can you discover something", fg=GREEN)
+        count_down(WORK_MIN )
+        title_label.config(text="Only through hard work can you discover something", fg="white", font=("Mono", 20, "bold"), bg="#BEADFA")
         window.attributes('-topmost', 0)
         window.bell()
 
     else:
-        count_down(SHORT_BREAK_MIN) 
-        title_label.config(text="Break", fg=PINK)
+        count_down(SHORT_BREAK_MIN ) 
+        title_label.config(text="Break", fg="white")
         window.attributes('-topmost', 1)
         window.bell()
 
@@ -61,7 +59,7 @@ def count_down(count):
         start_timer()
         text_quotes = quotes()
 
-        quotes_feynman = tkinter.Label(text=text_quotes, bg=YELLOW, font=("Courier", 15, "bold"))
+        quotes_feynman = tkinter.Label(text=text_quotes, bg="#CEE6F3", font=("Courier", 15, "bold"))
         quotes_feynman.grid(column=1, row=2)
 
         marks = ""
@@ -69,25 +67,31 @@ def count_down(count):
             marks += "✅"
             check_marks.config(text=marks)
 
+
 window = tkinter.Tk()
 window.title('Feyndoro')
-window.config(padx=100, pady=50, bg=YELLOW)
+window.config(padx=100, pady=50, bg="#CEE6F3")
 
-canvas = tkinter.Canvas(width=220, height=224, bg=YELLOW, highlightthickness=0)
+canvas = tkinter.Canvas(width=380, height=224, bg="#CEE6F3", highlightthickness=0)
 
-feynman_img = tkinter.PhotoImage(file="test-1.png")
-canvas.create_image(130, 112, image=feynman_img)
+feynman_img = tkinter.PhotoImage(file="richard.png")
+canvas.create_image(191, 112, image=feynman_img)
 
-timer_text = canvas.create_text(128, 130, text="00:00", fill="white", font=("Courier", 35, "bold"))
+timer_text = canvas.create_text(190, 130, text="00:00", fill="white", font=("Courier", 35, "bold"))
 canvas.grid(column=1, row=1)
 
-title_label = tkinter.Label(text="Only through hard work can you discover something", fg=GREEN, font=("Mono", 20, "bold"), bg=YELLOW)
+title_label = tkinter.Label(text="Only through hard work can you discover something", fg="white", font=("Mono", 25, "bold"), bg="#BEADFA", justify="center")
 title_label.grid(column=1, row=0)
 
-check_marks = tkinter.Label(fg=GREEN, bg=YELLOW)
+check_marks = tkinter.Label( bg="#CEE6F3")
 check_marks.grid(column=1, row=3)
 
-start_button = tkinter.Button(text="Start", command=start_timer)
-start_button.grid(column=0, row=4)
+start_button = tkinter.Button(text="Start", command=start_timer, font=("Mono", 20, "bold"), fg="#279EFF", justify="center")
+start_button.config(padx=8, pady=8)
+start_button.grid(column=1, row=4)
+
+reset_button = tkinter.Button(text="Reset", activebackground="red")
+#reset_button.grid(column=2, row=4)
+
 
 window.mainloop()
