@@ -40,13 +40,13 @@ def start_timer():
         window.bell()
 
     elif reps % 2 == 1:
-        count_down(WORK_MIN )
+        count_down(WORK_MIN * 60)
         title_label.config(text=feynman_quote, fg="white", font=("Mono", 20, "bold"), bg="#BEADFA")
         window.attributes('-topmost', 0)
         window.bell()
 
     else:
-        count_down(SHORT_BREAK_MIN ) 
+        count_down(SHORT_BREAK_MIN * 60) 
         title_label.config(text="Break", fg="white")
         window.attributes('-topmost', 1)
         window.bell()
@@ -70,14 +70,14 @@ def count_down(count):
         start_timer()
         text_quotes = quotes()
 
-        quotes_feynman = tkinter.Label(text=text_quotes, bg="#CEE6F3", font=("Courier", 15, "bold"))
-        quotes_feynman.grid(column=1, row=2)
+        quotes_feynman.config(text=text_quotes, bg="#CEE6F3", font=("Courier", 15, "bold"))
 
         marks = ""
         for _ in range(math.floor(reps/2)):
             marks += "✅"
             check_marks.config(text=marks)
 
+text_quotes = quotes()
 
 window = tkinter.Tk()
 window.title('Feyndoro')
@@ -94,8 +94,12 @@ canvas.grid(column=1, row=1)
 title_label = tkinter.Label(text="Only through hard work can you discover something", fg="white", font=("Mono", 25, "bold"), bg="#BEADFA", justify="center")
 title_label.grid(column=1, row=0)
 
-check_marks = tkinter.Label( bg="#CEE6F3")
+check_marks = tkinter.Label(bg="#CEE6F3")
+check_marks.config(pady=10)
 check_marks.grid(column=1, row=3)
+
+quotes_feynman = tkinter.Label(bg="#CEE6F3", font=("Courier", 15, "bold"))
+quotes_feynman.grid(column=1, row=2)
 
 start_button = tkinter.Button(text="Start", command=start_timer, font=("Mono", 20, "bold"), fg="#279EFF", justify="center")
 start_button.config(padx=8, pady=8)
@@ -104,6 +108,5 @@ start_button.grid(column=1, row=4)
 reset_button = tkinter.Button(text="Reset", command=reset_timer)
 # reset_button.grid(column=1, row=5)
 
-print(reps)
 
 window.mainloop()
