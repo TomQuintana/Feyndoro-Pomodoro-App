@@ -17,6 +17,20 @@ timer = None
 #TODO: cambiar el tamanio de la imagen
 #TODO: ver de pasar las funciones al archivo de timer
 
+def reset_timer():
+
+    window.after_cancel(timer)
+
+    canvas.itemconfigure(timer_text, text="00:00")
+
+    title_label.config(text="Only through hard work can you discover something")
+    check_marks.config(text="")
+
+    quotes_feynman = tkinter.Label(text="", bg="#CEE6F3", font=("Courier", 15, "bold"))
+    quotes_feynman.grid(column=1, row=2)
+
+    global reps
+    reps = 0
 
 def start_timer():
 
@@ -90,8 +104,9 @@ start_button = tkinter.Button(text="Start", command=start_timer, font=("Mono", 2
 start_button.config(padx=8, pady=8)
 start_button.grid(column=1, row=4)
 
-reset_button = tkinter.Button(text="Reset", activebackground="red")
-#reset_button.grid(column=2, row=4)
+# reset_button = tkinter.Button(text="Reset", command=reset_timer)
+# reset_button.grid(column=1, row=5)
 
+print(reps)
 
 window.mainloop()
