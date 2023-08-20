@@ -4,18 +4,15 @@ import math
 from services.quotes_Feynman import quotes
 
 
-YELLOW = "#f7f5dd"
-reps = 0
 PINK = "#e2979c"
-RED = "#e7305b"
 FONT_NAME = "Courier"
 WORK_MIN = 25
 SHORT_BREAK_MIN = 5
 LONG_BREAK_MIN = 20
-timer = None
 
-#TODO: cambiar el tamanio de la imagen
-#TODO: ver de pasar las funciones al archivo de timer
+timer = None
+reps = 0
+feynman_quote = "Only through hard work can you discover something"
 
 def reset_timer():
 
@@ -23,7 +20,7 @@ def reset_timer():
 
     canvas.itemconfigure(timer_text, text="00:00")
 
-    title_label.config(text="Only through hard work can you discover something")
+    title_label.config(text=feynman_quote)
     check_marks.config(text="")
 
     quotes_feynman = tkinter.Label(text="", bg="#CEE6F3", font=("Courier", 15, "bold"))
@@ -44,7 +41,7 @@ def start_timer():
 
     elif reps % 2 == 1:
         count_down(WORK_MIN )
-        title_label.config(text="Only through hard work can you discover something", fg="white", font=("Mono", 20, "bold"), bg="#BEADFA")
+        title_label.config(text=feynman_quote, fg="white", font=("Mono", 20, "bold"), bg="#BEADFA")
         window.attributes('-topmost', 0)
         window.bell()
 
@@ -104,7 +101,7 @@ start_button = tkinter.Button(text="Start", command=start_timer, font=("Mono", 2
 start_button.config(padx=8, pady=8)
 start_button.grid(column=1, row=4)
 
-# reset_button = tkinter.Button(text="Reset", command=reset_timer)
+reset_button = tkinter.Button(text="Reset", command=reset_timer)
 # reset_button.grid(column=1, row=5)
 
 print(reps)
